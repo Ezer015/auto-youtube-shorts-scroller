@@ -1,22 +1,21 @@
-# [Auto-Youtube-Shorts-Scroller For Firefox](https://github.com/SoRadGaming/Auto-Youtube-Shorts-Scroller)
 
-## A Firefox Extension that adds an auto-scroll feature on YouTube, so you can watch Shorts without the need to touch your mouse.
+<div align="center">
 
 <img src="./extension/img/autoYTScrollerIcon128.png" alt="Logo"/>
 
-#### Whenever a YT Short ends, the extension will automatically scroll to the next one for you. Great for doing homework and watching Shorts at the same time without the need to switch tabs!
+# [Auto Youtube Shorts Scroller For Firefox](https://github.com/Ezer015/auto-youtube-shorts-scroller)
 
-- Chrome Extension: [Click here](./README.md#chrome-extension)
+A Firefox Extension that adds an auto-scroll feature on YouTube, so you can watch Shorts without the need to touch your mouse.
 
-- Firefox Add-On: [Click here](https://addons.mozilla.org/en-US/firefox/addon/auto-youtube-shorts-scroller/)
+</div>
 
-## Chrome Extension
+> Whenever a YT Short ends, the extension will automatically scroll to the next one for you. Great for doing homework and watching Shorts at the same time without the need to switch tabs! Now includes MMD mode to automatically filter for MMD content
 
-For Chromium, you can use the upstreaming of this extension by [Tyson3101](https://github.com/Tyson3101). <br/>
-The download for the ported add-on can be found [on their repository.](https://github.com/Tyson3101/Auto-Youtube-Shorts-Scroller)
+## Features
 
-## Bookmarklet
+- Auto-scrolling when shorts end
+- **MMD mode to only watch MMD content**
+- Customizable filters for video length, views, likes, and comments
+- Keyboard shortcuts for navigation
 
-Not Supported On Firefox
-
-###### Created by Tyson3101 (Fork for Firefox by SoRadGaming)
+> Created by Tyson3101 (Fork for Firefox by SoRadGaming, MMD mode by Ezer015)

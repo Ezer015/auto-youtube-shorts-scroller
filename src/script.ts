@@ -44,6 +44,9 @@ const amountOfPlaysInput = document.querySelector(
 const scrollOnCommentsInput = document.querySelector(
   "#scrollOnComments"
 ) as HTMLInputElement;
+const mmdModeInput = document.querySelector(
+  "#mmdMode"
+) as HTMLInputElement;
 const nextSettings = document.querySelector("#nextSettings") as HTMLDivElement;
 const backSettings = document.querySelector("#backSettings") as HTMLDivElement;
 const nextFilter = document.querySelector("#nextFilter") as HTMLDivElement;
@@ -416,18 +419,31 @@ function getAllSettingsForPopup() {
       amountOfPlaysToSkip: parseInt((e.target as HTMLSelectElement).value),
     });
   });
-  browser.storage.sync.get(["scrollOnComments"]).then(async (result) => {
-    let value = result["scrollOnComments"];
-    if (value == undefined) {
-      await browser.storage.sync.set({ crollOnComments: false });
+  browser.storage.sync.get(["scrollOnComments", "mmdMode"]).then(async (result) => {
+    let scrollValue = result["scrollOnComments"];
+    if (scrollValue == undefined) {
+      await browser.storage.sync.set({ scrollOnComments: false });
       scrollOnCommentsInput.checked = true;
     }
-    scrollOnCommentsInput.checked = value;
+    scrollOnCommentsInput.checked = scrollValue;
+
+    let mmdValue = result["mmdMode"];
+    if (mmdValue == undefined) {
+      await browser.storage.sync.set({ mmdMode: false });
+      mmdModeInput.checked = false;
+    }
+    mmdModeInput.checked = mmdValue;
   });
 
   scrollOnCommentsInput.addEventListener("change", (e) => {
     browser.storage.sync.set({
       scrollOnComments: (e.target as HTMLInputElement).checked,
+    });
+  });
+
+  mmdModeInput.addEventListener("change", (e) => {
+    browser.storage.sync.set({
+      mmdMode: (e.target as HTMLInputElement).checked,
     });
   });
 

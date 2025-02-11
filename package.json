@@ -1,7 +1,8 @@
 {
   "name": "auto_youtube_shorts_scroller",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "release": "npm run build && mkdir -p dist && cd extension && zip -r ../dist/auto-youtube-shorts-scroller.xpi * && cd .."
   },
   "dependencies": {
     "@types/firefox-webext-browser": "^78.0.0",

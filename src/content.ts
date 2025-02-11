@@ -32,6 +32,7 @@ let filterMinComments = "none";
 let filterMaxComments = "none";
 let blockedCreators = [];
 let blockedTags = [];
+let mmdMode = false;
 
 // STATE VARIABLES
 let currentVideoIndex: number = null;
@@ -167,6 +168,20 @@ function checkIfValidVideo() {
     currentVideo.setAttribute("loop", "");
     return false;
   }
+  // Get video title and check for MMD if MMD mode is enabled
+  if (mmdMode) {
+    const titleElement = currentVideoParent?.querySelector(".ytShortsVideoTitleViewModelShortsVideoTitle");
+    const mainTitle = titleElement?.querySelector(".yt-core-attributed-string")?.textContent?.toUpperCase() || "";
+    const hashTags = Array.from(titleElement?.querySelectorAll(".yt-core-attributed-string__link") || [])
+      .map(tag => tag.textContent?.toUpperCase() || "");
+    
+    // Check for MMD in main title or hashtags
+    if (!mainTitle.includes("MMD") && 
+        !hashTags.some(tag => tag.includes("MMD"))) {
+      return false;
+    }
+  }
+
   // Check if the video is from a blocked creator and if it is, skip it (FROM SETTINGS)
   const authorOfVideo = (
     currentVideoParent?.querySelector("#text a") as HTMLAnchorElement
@@ -321,6 +336,7 @@ function getParentVideo() {
         "filteredAuthors",
         "filteredTags",
         "scrollOnComments",
+        "mmdMode",
       ]
     ).then((result) => {
         if (result["shortCutKeys"])
@@ -379,6 +395,11 @@ function getParentVideo() {
       let newScrollOnComments = result["scrollOnComments"]?.newValue;
       if (newScrollOnComments !== undefined) {
         scrollOnCommentsCheck = newScrollOnComments;
+      }
+      
+      let newMmdMode = result["mmdMode"]?.newValue;
+      if (newMmdMode !== undefined) {
+        mmdMode = newMmdMode;
       }
       let newFilterMinLength = result["filterByMinLength"]?.newValue;
       if (newFilterMinLength != undefined) {
